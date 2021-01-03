@@ -1,0 +1,102 @@
+<div *ngIf="error == null && song != null;else song_not_found">
+  <div class="page-header page-header-small">
+    <div class="page-header-image rellax-header" data-rellax-speed="-8">
+    </div>
+    <div class="container">
+      <div class="content-center">
+        <h1 class="title">{{ song.meta.original.title.lang == 'SI_LK' ? singlish.parse(song.meta.original.title.value) : song.meta.original.title.value }}</h1>
+        <div class="text-center">
+          <h6>
+            ARTIST
+          </h6>
+          <p>
+            <span *ngFor='let artist of song.meta.original.artist; let i = index'>
+              {{ artist.name['SI_LK'] ? singlish.parse(artist.name['SI_LK']) : artist.name['EN_US'] }}
+            </span>
+          </p>
+          <h6>
+            ALBUM
+          </h6>
+          <p>
+            {{ song.meta.original.album.name['SI_LK'] ? singlish.parse(song.meta.original.album.name['SI_LK']) : song.meta.original.album.name['EN_US'] }}{{ song.meta.original.album.name['SI_LK'] && song.meta.original.album.name['EN_US'] ? ' - ' + song.meta.original.album.name['EN_US'] : '' }}
+          </p>
+          <h6>
+            LYRICS
+          </h6>
+          <p>
+            <span *ngFor='let lyricist of song.meta.original.lyricist; let i = index'>
+              {{ lyricist.name['SI_LK'] ? singlish.parse(lyricist.name['SI_LK']) : lyricist.name['EN_US'] }}
+            </span>
+          </p>
+          <h6>
+            COMPOSED BY
+          </h6>
+          <p>
+            <span *ngFor='let composer of song.meta.original.composer; let i = index'>
+              {{ composer.name['SI_LK'] ? singlish.parse(composer.name['SI_LK']) : composer.name['EN_US'] }}
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section section-about-us">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ml-auto mr-auto text-center">
+          <div class="song" id="song">
+
+          </div>
+        </div>
+      </div>
+      <div class="separator separator-primary"></div>
+    </div>
+    <!-- <div class="section section-contact-us text-center">
+        <div class="container">
+            <h2 class="title">Want to work with us?</h2>
+            <p class="description">Your project is very important to us.</p>
+            <div class="row">
+                <div class="col-lg-6 text-center col-md-8 ml-auto mr-auto">
+                  <div class="input-group input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                    <div class="input-group-prepend" >
+                      <span class="input-group-text">
+                          <i class="now-ui-icons users_circle-08"></i>
+                      </span>
+                    </div>
+                      <input type="text" class="form-control" placeholder="Left Font Awesome Icon" (focus)="focus=true" (blur)="focus=false">
+                  </div>
+                  <div class="input-group input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                    <div class="input-group-prepend" >
+                      <span class="input-group-text">
+                            <i class="now-ui-icons ui-1_email-85"></i>
+                      </span>
+                    </div>
+                      <input type="text" class="form-control" placeholder="Left Font Awesome Icon" (focus)="focus1=true" (blur)="focus1=false">
+                  </div>
+                    <div class="textarea-container">
+                        <textarea class="form-control" name="name" rows="4" cols="80" placeholder="Type a message..."></textarea>
+                    </div>
+                    <div class="send-button">
+                        <a href="#pablo" class="btn btn-primary btn-round btn-block btn-lg">Send Message</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+<ng-template #song_not_found>
+  <div class="page-header page-header-small">
+    <div class="page-header-image rellax-header" data-rellax-speed="-8">
+    </div>
+    <div class="container">
+      <div class="content-center">
+        <h1 class="title">{{ error.status }}!</h1>
+        <div class="text-center">
+          <p>{{ error.message }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
